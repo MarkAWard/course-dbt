@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: int_page_views
+    description: Product page views by users
+    columns:
+      - name: event_id
+      - name: user_id
+      - name: session_id
+      - name: product_id
+      - name: page_url
+      - name: created_at

@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: fct_product_page_view_daily
+    description: Aggregated fact model of pageviews for individual products. Each row corresponds to one day per product.
+    columns:
+      - name: page_view_date
+      - name: product_id
+      - name: product_name
+      - name: page_view_count
+      - name: user_count
