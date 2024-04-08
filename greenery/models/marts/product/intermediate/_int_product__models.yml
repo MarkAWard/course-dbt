@@ -2,11 +2,29 @@ version: 2
 
 models:
   - name: int_page_views
-    description: Product page views by users
+    description: Product page views by user sessions
     columns:
       - name: event_id
       - name: user_id
       - name: session_id
       - name: product_id
       - name: page_url
+      - name: created_at
+
+  - name: int_product_add_to_cart
+    description: Product add to cart events by user sessions
+    columns:
+      - name: event_id
+      - name: user_id
+      - name: session_id
+      - name: product_id
+      - name: created_at
+
+  - name: int_session_checkout
+    description: Session that had an order checkout event
+    columns:
+      - name: event_id
+      - name: user_id
+      - name: session_id
+      - name: order_id
       - name: created_at

@@ -1,7 +1,7 @@
 WITH EVENTS AS (
     SELECT *
     FROM {{ ref('stg_postgres_events') }}
-    WHERE event_type = 'page_view'
+    WHERE event_type = 'add_to_cart'
 )
 
 SELECT 
@@ -9,6 +9,5 @@ SELECT
     user_id,
     session_id,
     product_id,
-    page_url,
     created_at
 FROM EVENTS

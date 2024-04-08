@@ -1,14 +1,13 @@
 WITH EVENTS AS (
     SELECT *
     FROM {{ ref('stg_postgres_events') }}
-    WHERE event_type = 'page_view'
+    WHERE event_type = 'checkout'
 )
 
 SELECT 
     event_id,
     user_id,
     session_id,
-    product_id,
-    page_url,
+    order_id,
     created_at
 FROM EVENTS

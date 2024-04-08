@@ -3,9 +3,41 @@ version: 2
 models:
   - name: fct_product_page_view_daily
     description: Aggregated fact model of pageviews for individual products. Each row corresponds to one day per product.
+    tests:
+      - unique:
+          column_name: "(page_view_date || '-' || product_id)"
     columns:
       - name: page_view_date
       - name: product_id
       - name: product_name
       - name: page_view_count
       - name: user_count
+
+  - name: fct_session_events_agg
+    description: Aggregated count of each event type per session
+    columns:
+      - name: session_id
+      - name: user_id
+      - name: started_at
+      - name: ended_at
+      - name: duration_minutes
+      - name: total_page_view
+      - name: total_add_to_cart
+      - name: total_checkout
+      - name: total_package_shipped
+      - name: order_id
+
+  - name: fct_product_conversion_sessions
+    description: Tracks each product viewed during a user session and if that product was added to cart and checked out
+    columns:
+      - name: session_id
+      - name: user_id
+      - name: product_id
+      - name: product_name
+      - name: viewed_at
+      - name: added_to_cart
+      - name: added_to_cart_at
+      - name: checked_out
+      - name: checked_out_at
+      - name: converted
+      - name: ordered_id
