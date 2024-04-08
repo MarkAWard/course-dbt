@@ -5,6 +5,20 @@ models:
     description: Addresses from postgres
   - name: stg_postgres_events
     description: Events from postgres
+    columns:
+      - name: event_id
+      - name: session_id
+      - name: user_id
+      - name: event_type
+        tests:
+          - dbt_expectations.expect_column_values_to_be_in_set:
+              value_set:
+                ["page_view", "add_to_cart", "checkout", "package_shipped"]
+      - name: page_url
+      - name: created_at
+      - name: order_id
+      - name: product_id
+
   - name: stg_postgres_order_items
     description: Order items from postgres
   - name: stg_postgres_orders

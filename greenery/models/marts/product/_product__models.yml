@@ -4,8 +4,10 @@ models:
   - name: fct_product_page_view_daily
     description: Aggregated fact model of pageviews for individual products. Each row corresponds to one day per product.
     tests:
-      - unique:
-          column_name: "(page_view_date || '-' || product_id)"
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - page_view_date
+            - product_id
     columns:
       - name: page_view_date
       - name: product_id
