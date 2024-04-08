@@ -72,4 +72,24 @@ e8b6528e-a830-4d03-a027-473b411c7f02	Snake Plant	29	73	0.39726
 4cda01b9-62e2-46c5-830f-b7f262a58fb1	Pothos	21	61	0.344262
 ```
 
-
+## Part 6
+### Which products had their inventory change from week 2 to week 3?
+```
+select
+    product_id,
+    name,
+    inventory,
+    lag(inventory) over(partition by product_id order by dbt_updated_at desc) as prev_inventory
+from dev_db.dbt_markmawgmailcom.products_snapshot
+qualify prev_inventory != inventory
+```
+Missed last weeks project so answer is really what changed since week 1
+```
+PRODUCT_ID	NAME	INVENTORY	PREV_INVENTORY
+55c6a062-5f4a-4a8b-a8e5-05ea5e6715a3	Philodendron	51	15
+689fb64e-a4a2-45c5-b9f2-480c2155624d	Bamboo	56	44
+4cda01b9-62e2-46c5-830f-b7f262a58fb1	Pothos	40	0
+fb0e8be7-5ac4-4a76-a1fa-2cc4bf0b2d80	String of pearls	58	0
+be49171b-9f72-4fc9-bf7a-9a52e259836b	Monstera	77	50
+b66a7143-c18a-43bb-b5dc-06bb5d1d3160	ZZ Plant	89	53
+```
