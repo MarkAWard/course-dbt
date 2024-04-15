@@ -43,3 +43,12 @@ models:
       - name: checked_out_at
       - name: converted
       - name: ordered_id
+
+  - name: product_funnel_agg
+    description: The product funnel, aggregated counts of sessions moving through page_view, add_to_cart, and checkout
+    columns:
+      - name: stage
+      - name: total_sessions
+      - name: pct_of_total
+      - name: pct_of_previous
+      - name: pct_dropoff
